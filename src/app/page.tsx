@@ -17,7 +17,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <HavenLogo size={48} />
             <div className="hidden sm:flex flex-col">
-              <span className="text-lg font-bold gold-text">HAVEN CARTY</span>
+              <span className="text-lg font-bold gold-text">MAC CARTY</span>
               <span className="text-xs text-[var(--text-muted)]">Family Offices</span>
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function Home() {
       <section className="py-20 px-6 particle-bg">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Impact the Midlands?</h2>
-          <p className="text-xl text-[var(--text-secondary)] mb-8">Connect with Haven Carty Family Offices for institutional-grade insight on UK Technology investment timing and regional economic development.</p>
+          <p className="text-xl text-[var(--text-secondary)] mb-8">Connect with Mac Carty Family Offices for institutional-grade insight on UK Technology investment timing and regional economic development.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="btn-primary">Schedule Consultation</button>
             <button className="btn-secondary">Download Prospectus</button>
@@ -195,7 +195,7 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <HavenLogo size={40} />
-                <span className="font-bold gold-text">HAVEN CARTY</span>
+                <span className="font-bold gold-text">MAC CARTY</span>
               </div>
               <p className="text-sm text-[var(--text-muted)]">Family Offices delivering thought leadership in Human-Computer Interaction and UK technology investment.</p>
             </div>
@@ -219,13 +219,13 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-[var(--text-muted)]">
-                <li>info@havencarty.co.uk</li>
+                <li>hi@havencarty.com</li>
                 <li>Birmingham, UK Midlands</li>
               </ul>
             </div>
           </div>
           <div className="pt-8 border-t border-[var(--dark-border)] flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-[var(--text-muted)]">© 2026 Haven Carty Family Offices. Heritage: Hargreaves, Gordon & McCarthy.</p>
+            <p className="text-sm text-[var(--text-muted)]">© 2026 Mac Carty Family Offices. Heritage: Hargreaves, Gordon & McCarthy.</p>
             <div className="flex gap-6 text-sm text-[var(--text-muted)]">
               <a href="#" className="hover:text-[var(--gold-primary)] transition-colors">Privacy</a>
               <a href="#" className="hover:text-[var(--gold-primary)] transition-colors">Terms</a>
