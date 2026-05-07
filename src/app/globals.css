@@ -87,7 +87,7 @@
   }
 
   .market-card:hover {
-    @apply border-[var(--gold-primary)]/30;
+    border: 1px solid color-mix(in srgb, var(--gold-primary) 30%, transparent);
     box-shadow: 0 0 20px rgba(212, 168, 83, 0.1);
   }
 
