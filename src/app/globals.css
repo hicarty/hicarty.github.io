@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Core colors */
+  --dark-bg: #1a1a1e;
+  --dark-card: #232328;
+  --dark-elevated: #2a2a30;
+  --dark-border: #3a3a42;
+
+  /* Gold spectrum */
+  --gold-primary: #d4a853;
+  --gold-light: #e8c573;
+  --gold-dark: #b8923d;
+  --gold-muted: rgba(212, 168, 83, 0.15);
+
+  /* Teal/Turquoise spectrum */
+  --teal-primary: #2dd4bf;
+  --teal-light: #5eead4;
+  --teal-dark: #14b8a6;
+  --teal-muted: rgba(45, 212, 191, 0.15);
+
+  /* Signal colors */
+  --signal-positive: #22c55e;
+  --signal-negative: #ef4444;
+  --signal-neutral: #a1a1aa;
+
+  /* Text */
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+}
+
+@layer base {
+  * {
+    @apply border-[var(--dark-border)];
+  }
+
+  body {
+    @apply bg-[var(--dark-bg)] text-[var(--text-primary)];
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[var(--dark-card)] border border-[var(--dark-border)] backdrop-blur-xl;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -2px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .teal-glow {
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.2);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 30px rgba(212, 168, 83, 0.2);
+  }
+
+  .market-card {
+    @apply glass-card rounded-lg p-4 transition-all duration-300;
+  }
+
+  .market-card:hover {
+    @apply border-[var(--gold-primary)]/30;
+    box-shadow: 0 0 20px rgba(212, 168, 83, 0.1);
+  }
+
+  .signal-badge {
+    @apply px-2 py-0.5 text-xs font-medium rounded font-mono;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--gold-primary)] text-[var(--dark-bg)] font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply bg-[var(--gold-light)];
+    box-shadow: 0 0 30px rgba(212, 168, 83, 0.3);
+  }
+
+  .btn-secondary {
+    @apply border border-[var(--gold-primary)]/50 text-[var(--gold-primary)] px-6 py-3 rounded-lg transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-[var(--gold-muted)] border-[var(--gold-primary)];
+  }
+
+  .section-divider {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent 0%, var(--dark-border) 20%, var(--gold-primary) 50%, var(--dark-border) 80%, transparent 100%);
+  }
+
+  .particle-bg {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(212, 168, 83, 0.04) 0%, transparent 70%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 168, 83, 0.3);
+  color: var(--text-primary);
+}
