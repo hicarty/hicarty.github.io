@@ -1,6 +1,6 @@
 "use client";
 
-export function HavenLogo({ className = "" }: { className?: string }) {
+export function HavenLogo({ size = 40, className = "" }: { size?: number; className?: string }) {
   return (
     <svg
       viewBox="0 0 200 240"
