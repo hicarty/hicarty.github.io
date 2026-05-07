@@ -1,6 +1,6 @@
 "use client";
 
-import { HavenLogo, HavenLogoWithText } from "@/components/HavenLogo";
+import { HavenLogo } from "@/components/HavenLogo";
 import { MarketOverview } from "@/components/MarketOverview";
 import { TamSamSom } from "@/components/TamSamSom";
 import { MidlandsQuarters } from "@/components/MidlandsQuarters";
@@ -38,7 +38,7 @@ export default function Home() {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--teal-primary)]/5 rounded-full blur-3xl" />
         </div>
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <HavenLogoWithText className="justify-center mb-8" />
+          <HavenLogo className="justify-center mb-8" />
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="gold-text">IMPACT</span> THE MIDLANDS
           </h1>
