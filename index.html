@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haven Carty · Pages</title>
+  <meta name="description" content="A tree of Haven Carty's public GitHub Pages and GitLab Pages sites.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1a1e;
+      --card: #232328;
+      --border: #3a3a42;
+      --line: #4a4a54;
+      --text: #fafafa;
+      --text-2: #a1a1aa;
+      --text-3: #8b8b94;
+      --gold: #d4a853;
+      --gold-light: #e8c573;
+      --teal: #2dd4bf;
+      --warn: #e8a453;
+      color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #faf8f4;
+        --card: #ffffff;
+        --border: #e4e0d8;
+        --line: #c9c3b8;
+        --text: #1a1a1e;
+        --text-2: #55555c;
+        --text-3: #6b6b73;
+        --gold: #8a6420;
+        --gold-light: #6e4f17;
+        --teal: #0f766e;
+        --warn: #9a5b12;
+        color-scheme: light;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 72px 16px 48px; }
+
+    header h1 {
+      margin: 0;
+      font: 600 clamp(2.2rem, 7vw, 3.2rem)/1.1 "Playfair Display", Georgia, serif;
+      letter-spacing: -0.02em;
+      color: var(--gold);
+    }
+    header p { margin: 10px 0 0; color: var(--text-2); max-width: 52ch; }
+
+    .panel {
+      margin-top: 40px;
+      padding: 28px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    /* ---- tree ---- */
+    .tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+    .tree { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92rem; }
+    .tree ul { margin-left: 0.55em; }
+    .tree ul li { position: relative; padding: 0.3em 0 0.3em 1.7em; }
+    /* vertical rail */
+    .tree ul li::before {
+      content: "";
+      position: absolute; left: 0; top: 0; bottom: 0;
+      border-left: 1px solid var(--line);
+    }
+    .tree ul li:last-child::before { bottom: auto; height: 1.08em; }
+    /* elbow */
+    .tree ul li::after {
+      content: "";
+      position: absolute; left: 0; top: 1.08em; width: 1.2em;
+      border-top: 1px solid var(--line);
+    }
+
+    .root { font-weight: 500; color: var(--text); }
+    .host { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75em; }
+    .host-name { color: var(--teal); font-weight: 500; }
+    .host a { color: var(--text-2); text-decoration: none; }
+    .host a:hover { color: var(--text); text-decoration: underline; }
+    .count { color: var(--text-3); }
+
+    .site-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75em; }
+    .site { color: var(--gold); text-decoration: none; font-weight: 500; overflow-wrap: anywhere; }
+    .site:hover { color: var(--gold-light); text-decoration: underline; }
+    .repo { color: var(--text-3); text-decoration: none; font-size: 0.85em; }
+    .repo:hover { color: var(--text-2); text-decoration: underline; }
+    .desc {
+      margin: 0.1em 0 0;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-2);
+    }
+    .tag {
+      font-size: 0.75em; padding: 0 0.45em; border-radius: 4px;
+      border: 1px solid var(--border); color: var(--text-3);
+    }
+
+    .status {
+      margin: 20px 0 0; font-size: 0.85rem; color: var(--text-3);
+      display: flex; align-items: center; gap: 0.5em;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-3); flex: none; }
+    .status[data-state="live"] .dot { background: var(--teal); }
+    .status[data-state="cached"] .dot { background: var(--teal); opacity: 0.6; }
+    .status[data-state="fallback"] .dot { background: var(--warn); }
+
+    footer { margin-top: 48px; color: var(--text-3); font-size: 0.85rem; }
+
+    @media (max-width: 480px) {
+      .wrap { padding-top: 48px; }
+      .panel { padding: 20px 14px; }
+      .tree { font-size: 0.85rem; }
+      .tree ul li { padding-left: 1.35em; }
+      .tree ul li::after { width: 0.95em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Haven Carty</h1>
+      <p>Every public site I publish with GitHub Pages and GitLab Pages, grouped by where the source lives.</p>
+    </header>
+
+    <main class="panel" aria-label="Pages tree">
+      <ul class="tree">
+        <li>
+          <span class="root">pages/</span>
+          <ul>
+            <li>
+              <div class="host">
+                <span class="host-name">GitHub</span>
+                <a href="https://github.com/hicarty">github.com/hicarty</a>
+                <span class="count" id="gh-count"></span>
+              </div>
+              <ul id="gh-list">
+                <li>
+                  <div class="site-line">
+                    <a class="site" href="https://hicarty.github.io/">hicarty.github.io</a>
+                    <span class="tag">you are here</span>
+                    <a class="repo" href="https://github.com/hicarty/hicarty.github.io">hicarty.github.io</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="site-line">
+                    <a class="site" href="https://cv.havencarty.com/">cv.havencarty.com</a>
+                    <a class="repo" href="https://github.com/hicarty/CV">CV</a>
+                  </div>
+                  <p class="desc">Curriculum Vitae</p>
+                </li>
+                <li>
+                  <div class="site-line">
+                    <a class="site" href="https://servantleaders.uk/">servantleaders.uk</a>
+                    <a class="repo" href="https://github.com/hicarty/servantleaders">servantleaders</a>
+                  </div>
+                  <p class="desc">ServantLeaders UK</p>
+                </li>
+                <li>
+                  <div class="site-line">
+                    <a class="site" href="https://havencarty.com/">havencarty.com</a>
+                    <a class="repo" href="https://github.com/hicarty/grantscott">grantscott</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="host">
+                <span class="host-name">GitLab</span>
+                <a href="https://gitlab.com/masterhic">gitlab.com/masterhic</a>
+                <span class="count" id="gl-count"></span>
+              </div>
+              <ul id="gl-list">
+                <li>
+                  <div class="site-line">
+                    <a class="site" href="https://masterhic.gitlab.io/jobs/">masterhic.gitlab.io/jobs</a>
+                    <a class="repo" href="https://gitlab.com/masterhic/jobs">jobs</a>
+                  </div>
+                  <p class="desc">Careers</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p class="status" id="status" data-state="fallback" role="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="status-text">Saved list.</span>
+      </p>
+    </main>
+
+    <footer>&copy; <span id="year">2026</span> Haven Carty</footer>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var USER = "hicarty";
+    var USER_SITE = USER + ".github.io";
+    var CACHE_KEY = "gh-pages-tree:v1";
+    var CACHE_MS = 60 * 60 * 1000;
+
+    // Custom domains set by a CNAME file in the repo. Any other Pages repo is
+    // linked at hicarty.github.io/<repo>/, which GitHub redirects to the
+    // custom domain if one is configured.
+    var CUSTOM_DOMAINS = {
+      "CV": "cv.havencarty.com",
+      "servantleaders": "servantleaders.uk",
+      "grantscott": "havencarty.com"
+    };
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function el(tag, attrs, text) {
+      var n = document.createElement(tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (text != null) n.textContent = text;
+      return n;
+    }
+
+    function siteFor(repo) {
+      if (repo.name.toLowerCase() === USER_SITE) {
+        return { url: "https://" + USER_SITE + "/", label: USER_SITE };
+      }
+      var domain = CUSTOM_DOMAINS[repo.name];
+      if (domain) return { url: "https://" + domain + "/", label: domain };
+      return {
+        url: "https://" + USER_SITE + "/" + encodeURIComponent(repo.name) + "/",
+        label: USER_SITE + "/" + repo.name
+      };
+    }
+
+    function renderGitHub(repos) {
+      var list = document.getElementById("gh-list");
+      var pages = repos.filter(function (r) { return r.has_pages; });
+      pages.sort(function (a, b) {
+        var au = a.name.toLowerCase() === USER_SITE, bu = b.name.toLowerCase() === USER_SITE;
+        if (au !== bu) return au ? -1 : 1;
+        return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+      });
+      if (!pages.length) return false;
+
+      var frag = document.createDocumentFragment();
+      pages.forEach(function (r) {
+        var s = siteFor(r);
+        var li = el("li");
+        var line = el("div", { "class": "site-line" });
+        line.appendChild(el("a", { "class": "site", href: s.url }, s.label));
+        if (r.name.toLowerCase() === USER_SITE) line.appendChild(el("span", { "class": "tag" }, "you are here"));
+        if (r.archived) line.appendChild(el("span", { "class": "tag" }, "archived"));
+        line.appendChild(el("a", { "class": "repo", href: r.html_url }, r.name));
+        li.appendChild(line);
+        if (r.description) li.appendChild(el("p", { "class": "desc" }, r.description));
+        frag.appendChild(li);
+      });
+      list.replaceChildren(frag);
+      return true;
+    }
+
+    function setCounts() {
+      ["gh", "gl"].forEach(function (k) {
+        var n = document.getElementById(k + "-list").children.length;
+        document.getElementById(k + "-count").textContent = n + (n === 1 ? " site" : " sites");
+      });
+    }
+
+    function setStatus(state, text) {
+      var s = document.getElementById("status");
+      s.setAttribute("data-state", state);
+      document.getElementById("status-text").textContent = text;
+    }
+
+    function readCache() {
+      try {
+        var c = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (c && Date.now() - c.t < CACHE_MS && Array.isArray(c.repos)) return c;
+      } catch (e) {}
+      return null;
+    }
+
+    function writeCache(repos) {
+      try {
+        var slim = repos.map(function (r) {
+          return { name: r.name, has_pages: r.has_pages, archived: r.archived,
+                   html_url: r.html_url, description: r.description };
+        });
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), repos: slim }));
+      } catch (e) {}
+    }
+
+    function fetchAll(page, acc) {
+      var url = "https://api.github.com/users/" + USER +
+                "/repos?type=owner&per_page=100&page=" + page;
+      return fetch(url, { headers: { Accept: "application/vnd.github+json" } })
+        .then(function (res) {
+          if (!res.ok) throw new Error("GitHub API " + res.status);
+          return res.json();
+        })
+        .then(function (batch) {
+          acc = acc.concat(batch);
+          return batch.length === 100 && page < 10 ? fetchAll(page + 1, acc) : acc;
+        });
+    }
+
+    setCounts();
+
+    var cached = readCache();
+    if (cached && renderGitHub(cached.repos)) {
+      setCounts();
+      setStatus("cached", "GitHub list from GitHub, " +
+        new Date(cached.t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + ".");
+      return;
+    }
+
+    if (!window.fetch) return;
+    fetchAll(1, [])
+      .then(function (repos) {
+        if (renderGitHub(repos)) {
+          writeCache(repos);
+          setCounts();
+          setStatus("live", "GitHub list loaded live from GitHub.");
+        }
+      })
+      .catch(function () {
+        setStatus("fallback", "Saved list. GitHub couldn't be reached for a live check.");
+      });
+  })();
+  </script>
+</body>
+</html>
